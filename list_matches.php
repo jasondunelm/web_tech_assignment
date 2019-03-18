@@ -120,19 +120,17 @@ JOIN Users ON Results.userID = Users.id
 ORDER BY Results.matchID";
                         $result = mysqli_query($link, $query);
 
-                        while ($row = mysqli_fetch_assoc($result)) { ?>
-                            <tr>
-                                <td><?php echo $row["matchID"]; ?></td>
-                                <td><?php echo $row["gameName"]; ?></td>
-                                <td><?php echo $row["matchDate"]; ?></td>
-                                <td><?php echo $row["firstName"];
-                                    echo ".";
-                                    echo $row["lastName"]; ?></td>
-                                <td><?php echo $row["matchResult"]; ?></td>
-                                <td><a class="btn btn-info my-2 my-sm-0" href='edit_records.php?mc=$row[matchID]&$gc=row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]'>Edit</a></td>
-                                <td><a class="btn btn-warning my-2 my-sm-0" href="#">Delete</a></td>
-                            </tr>
-                        <?php }
+                        while ($row = mysqli_fetch_assoc($result)){
+                            echo "<tr>
+                                    <td>".$row["matchID"]."</td>
+                                    <td>".$row["gameName"]."</td>
+                                    <td>".$row["matchDate"]."</td>
+                                    <td>".$row["firstName"].$row["lastName"]."</td>
+                                    <td>".$row["matchResult"]."</td>
+                                    <td><a href=\"edit_records.php?mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-info my-2 my-sm-0\">Edit</a></td>
+                                    <td><a class=\"btn btn-warning my-2 my-sm-0\" href=\"#\">Delete</a></td>
+                                  </tr>";
+                        }
                     } ?>
                     </tbody>
                 </table>
