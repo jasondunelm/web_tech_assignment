@@ -144,9 +144,10 @@ include("functions.php");
                         Your recent play records</h4>
                     <div class="input-group mb-3">
                         <input type="text" name="q" class="form-control"
-                               placeholder="Search a specific game play records" aria-describedby="basic-addon2">
+                               placeholder="Please input a game name for searching..." aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <input type="submit" name="submit" value="Filter" class="btn btn-primary">
+                            <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
+                            <input type="submit" name="seeAll" value="All records" class="btn btn-primary">
                         </div>
                     </div>
                     <thead>
@@ -195,7 +196,23 @@ WHERE userID='" . $_SESSION['id'] . "'AND gameName LIKE '%$q%'");
                                 <?php }
                             }
                         }
-                    } ?>
+                    }
+
+                    if ($_POST['seeAll']) {
+                        $query = "SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID FROM Games JOIN Matches ON Games.gameID = Matches.gameID JOIN Results ON Matches.matchID = Results.matchID WHERE userID='" . $_SESSION['id'] . "'ORDER BY Results.matchID";
+
+                        $result = mysqli_query($link, $query);
+
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td><?php echo $row["matchID"]; ?></td>
+                                <td><?php echo $row["gameName"]; ?></td>
+                                <td><?php echo $row["matchDate"]; ?></td>
+                                <td><?php echo $row["matchResult"]; ?></td>
+                            </tr>
+                        <?php }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </form>

@@ -3,13 +3,12 @@ session_start();
 
 // to connect with mySQL database either to use PDO or mysqli_connect
 try {
-    $pdo = new PDO('mysql:host=mysql.dur.ac.uk; dbname=Xmvzs37_WestGames', 'mvzs37', 'sy98dney');
+    $pdo = new PDO('mysql:host=127.0.0.1; dbname=west_games', 'root', 'password');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-
-$link = mysqli_connect("mysql.dur.ac.uk", "mvzs37", "sy98dney", "Xmvzs37_WestGames");
+$link = mysqli_connect("127.0.0.1", "root", "password", "west_games");
 
 // to logout and clear session records
 if ($_GET["logout"] == 1 AND $_SESSION['id']) {
@@ -158,7 +157,8 @@ if ($_POST['submit'] == "Upload Record") {
 
         if ($row) {
             $gameID = $row["gameID"];
-            $query = "INSERT INTO Matches (gameID) VALUES ($gameID)";
+            $gameName = $row["gameName"];
+            $query = "INSERT INTO Matches (gameID, gameName) VALUES ('$gameID', '$gameName')";
             $result = mysqli_query($link, $query);
             $query1 = "SELECT matchID FROM Matches ORDER BY matchID DESC LIMIT 1";
             $result1 = mysqli_query($link, $query1);
@@ -245,4 +245,34 @@ if ($_POST['submit'] == "Search Game") {
         }
     }
 }
+
+// edit a game record to database
+if (isset($_POST['updateRecord'])) {
+    $newResult = $_POST['newResult'];
+    $resultID = $_GET['rid'];
+    $query = "UPDATE Results SET matchResult = '$newResult' WHERE Results.resultID = '$resultID'";
+    $data = mysqli_query($link, $query);
+    if ($data) {
+        $message = "Game result updated successfully! <a href=list_matches.php>Check updated list here</a>";
+    } else {
+        $error = "Update is failed, please try again!";
+    }
+
+} else if (isset($_POST['cancelEdit'])) {
+    header("Location:list_matches.php");
+}
+
+// delete a player's game record in database
+if (isset($_POST['deleteRecord'])) {
+    $resultID = $_GET['rid'];
+    $query = "DELETE FROM Results WHERE Results.resultID = '$resultID'";
+    $data = mysqli_query($link, $query);
+    if ($data) {
+        $message = "Game result deleted successfully! <a href=list_matches.php>Check updated list here";
+    } else {
+        $error = "Delete is failed, please try again!";
+    }
+}
+
+
 ?>
