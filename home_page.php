@@ -132,7 +132,7 @@ include("functions.php");
                         Your recent play records</h4>
                     <div class="input-group mb-3">
                         <input type="text" name="q" class="form-control"
-                               placeholder="Search a specific game play records" aria-describedby="basic-addon2">
+                               placeholder="Search win records by game name" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <input type="submit" name="submit" value="Filter" class="btn btn-primary">
                         </div>

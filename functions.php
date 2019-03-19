@@ -157,8 +157,7 @@ if ($_POST['submit'] == "Upload Record") {
 
         if ($row) {
             $gameID = $row["gameID"];
-            $gameName = $row["gameName"];
-            $query = "INSERT INTO Matches (gameID, gameName) VALUES ('$gameID', '$gameName')";
+            $query = "INSERT INTO Matches (gameID) VALUES ($gameID)";
             $result = mysqli_query($link, $query);
             $query1 = "SELECT matchID FROM Matches ORDER BY matchID DESC LIMIT 1";
             $result1 = mysqli_query($link, $query1);
@@ -273,6 +272,5 @@ if (isset($_POST['deleteRecord'])) {
         $error = "Delete is failed, please try again!";
     }
 }
-
 
 ?>

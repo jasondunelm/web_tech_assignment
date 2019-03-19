@@ -62,7 +62,7 @@ include("functions.php");
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="list_matches.php">List of Matches</a>
-                    <a class="dropdown-item" href="#">Leader Boards</a>
+                    <a class="dropdown-item" href="leader_boards.php">Leader Boards</a>
                     <a class="dropdown-item" href="#">Statistics</a>
                     <a class="dropdown-item" href="#">Game Store</a>
                 </div>
@@ -144,10 +144,10 @@ include("functions.php");
                         Your recent play records</h4>
                     <div class="input-group mb-3">
                         <input type="text" name="q" class="form-control"
-                               placeholder="Please input a game name for searching..." aria-describedby="basic-addon2">
+                               placeholder="Search win records by game name" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
-                            <input type="submit" name="seeAll" value="All records" class="btn btn-primary">
+                            <input type="submit" name="submit" value="All records" class="btn btn-primary">
                         </div>
                     </div>
                     <thead>
@@ -175,7 +175,7 @@ include("functions.php");
                             </tr>
                         <?php }
                     } else {
-                        if (isset($_POST['submit'])) {
+                        if ($_POST['submit'] =="Filter") {
                             $q = $link->real_escape_string($_POST['q']);
 
                             $sql = $link->query("SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID
@@ -198,7 +198,7 @@ WHERE userID='" . $_SESSION['id'] . "'AND gameName LIKE '%$q%'");
                         }
                     }
 
-                    if ($_POST['seeAll']) {
+                    if ($_POST['submit']=="All records") {
                         $query = "SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID FROM Games JOIN Matches ON Games.gameID = Matches.gameID JOIN Results ON Matches.matchID = Results.matchID WHERE userID='" . $_SESSION['id'] . "'ORDER BY Results.matchID";
 
                         $result = mysqli_query($link, $query);

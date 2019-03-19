@@ -133,7 +133,7 @@ include("functions.php");
             </form>
         </div>
         <div class="row mt-3">
-            <input type="submit" name="addRecord" value="Add a player" class="btn btn-primary mr-2 mx-auto">
+            <input type="button" name="add" id="add" value="Add a new player to this match" class="btn btn-primary mr-2 mx-auto">
         </div>
     </div>
 </div>

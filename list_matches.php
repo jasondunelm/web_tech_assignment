@@ -63,7 +63,7 @@ include("functions.php");
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="list_matches.php">List of Matches</a>
-                    <a class="dropdown-item" href="#">Leader Boards</a>
+                    <a class="dropdown-item" href="leader_boards.php">Leader Boards</a>
                     <a class="dropdown-item" href="#">Statistics</a>
                     <a class="dropdown-item" href="#">Game Store</a>
                 </div>
