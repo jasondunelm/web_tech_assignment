@@ -275,12 +275,11 @@ if (isset($_POST['deleteRecord'])) {
 
 // edit a game info to database
 if (isset($_POST['updateGameInfo'])) {
-    $gameID = $_GET['gameID'];
+    $gameID = $_GET['gid'];
     $newRating = $_POST['newRating'];
-    $newNumOfPlayers = $_POST['newNumOfPlayers'];
     $newGameDes = $_POST['newGameDes'];
 
-    $query = "UPDATE Games SET gameRating = '$newRating', gameNumPlayer = '$newNumOfPlayers', gameDescription = '$newGameDes' WHERE Games.gameID = '$gameID'";
+    $query = "UPDATE Games SET gameRating = '$newRating', gameDescription = '".mysqli_real_escape_string($link, $newGameDes)."' WHERE Games.gameID = '$gameID'";
     $data = mysqli_query($link, $query);
     if ($data) {
         $message = "Game info updated successfully! <a href=game_list.php>Check updated list here</a>";
@@ -292,4 +291,63 @@ if (isset($_POST['updateGameInfo'])) {
     header("Location:game_list.php");
 }
 
+// add new game button header to add new game page
+if (isset($_POST['addNewGame'])){
+    header("Location:add_new_game.php");
+}
+
+// add new game into the database
+if ($_POST['submit'] == "Add New Game") {
+
+    $target = "images/" . basename($_FILES['image']['name']);
+    $image = $_FILES['image']['name'];
+
+    if (!addslashes($_POST['add_new_gameID'])) {
+        $error .= "<br />Please enter a new game ID.";
+    }
+
+    if (!addslashes($_POST['add_new_game_name'])) {
+        $error .= "<br />Please enter a new game name.";
+    }
+
+    if (!addslashes($_POST['add_new_game_num_of_player'])) {
+        $error .= "<br />Please enter number of players for this game.";
+    }
+
+    if (!addslashes($_POST['add_new_game_rating'])) {
+        $error .= "<br />Please enter current rating status of this game.";
+    }
+
+    if (!addslashes($_POST['add_new_game_description'])) {
+        $error .= "<br />Please add some description of this game.";
+    }
+
+    if(!$image) {
+        $error .= "<br />Please choose a game cover image.";
+    }
+
+    }
+    if ($error) {
+        $error = "There were error(s) in your add new game details:" . $error;
+    } else {
+
+        $query = "SELECT * FROM Games WHERE gameID='" . mysqli_real_escape_string($link, $_POST['add_new_gameID']) . "'";
+
+        $result = mysqli_query($link, $query);
+
+        $results = mysqli_num_rows($result);
+
+        if ($results) {
+            $error = "That game ID is already registered, please choose another one.";
+        } else {
+
+            $query = "INSERT INTO Games (gameID, gameName, gameNumPlayer, gameRating, gameDescription, images) VALUES('" . mysqli_real_escape_string($link, $_POST['add_new_gameID']) . "','" . mysqli_real_escape_string($link, $_POST['add_new_game_name']) . "','" . mysqli_real_escape_string($link, $_POST['add_new_game_num_of_player']) . "','" . mysqli_real_escape_string($link, $_POST['add_new_game_rating']) . "','" . mysqli_real_escape_string($link, $_POST['add_new_game_description']) . "','$image')";
+
+            $data = mysqli_query($link, $query);
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+                $message = "Game info updated successfully! <a href=game_list.php>Check updated list here</a>";
+            }
+        }
+    }
 ?>

@@ -2,24 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc809f72-9277-4f41-b8fd-91de3dfa1566" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/add_new_game.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/edit_game_info.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/game_list.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leader_board_member.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/matches_per_day.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/won_percentage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/web_tech_assignment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/web_tech_assignment.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test3.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_new_game.php" beforeDir="false" afterPath="$PROJECT_DIR$/add_new_game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edit_game_info.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit_game_info.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edit_record.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit_record.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_info_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/game_info_admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/game_list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_record_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/game_record_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home_page_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/home_page_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leader_boards.php" beforeDir="false" afterPath="$PROJECT_DIR$/leader_board_game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leader_board_game.php" beforeDir="false" afterPath="$PROJECT_DIR$/leader_board_game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leader_board_member.php" beforeDir="false" afterPath="$PROJECT_DIR$/leader_board_member.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/list_matches.php" beforeDir="false" afterPath="$PROJECT_DIR$/list_matches.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.php" beforeDir="false" afterPath="$PROJECT_DIR$/test2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matches_per_day.php" beforeDir="false" afterPath="$PROJECT_DIR$/matches_per_day.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/won_percentage.php" beforeDir="false" afterPath="$PROJECT_DIR$/won_percentage.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,141 +24,69 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/leader_board_member.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="449">
-                    <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/index.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="196">
-                    <caret line="119" column="24" lean-forward="true" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/game_list.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="597">
-                    <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
-                    <folding>
-                      <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
-                      <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
-                      <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/edit_game_info.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="575">
-                    <caret line="69" column="110" selection-start-line="69" selection-start-column="110" selection-end-line="69" selection-end-column="110" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/leader_board_game.php">
+        <entry file="file://$PROJECT_DIR$/game_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="78" column="17" lean-forward="true" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
+            <state relative-caret-position="12">
+              <caret line="119" column="27" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/list_matches.php">
+        <entry file="file://$PROJECT_DIR$/test3.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="8" selection-end-line="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/matches_per_day.php">
+        <entry file="file://$PROJECT_DIR$/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="74" column="110" selection-start-line="74" selection-start-column="110" selection-end-line="74" selection-end-column="110" />
+            <state relative-caret-position="713">
+              <caret line="343" column="405" selection-start-line="343" selection-start-column="405" selection-end-line="343" selection-end-column="405" />
+              <folding>
+                <element signature="e#94#306#0#PHP" />
+                <element signature="e#252#306#0#PHP" />
+                <element signature="e#418#554#0#PHP" />
+                <element signature="e#582#2310#0#PHP" />
+                <element signature="e#2335#3191#0#PHP" />
+                <element signature="n#isAdmin#0;n#!!top" />
+                <element signature="n#displayError#0;n#!!top" />
+                <element signature="e#3758#6904#0#PHP" />
+                <element signature="e#6943#7915#0#PHP" />
+                <element signature="e#7951#8482#0#PHP" />
+                <element signature="e#8405#8482#0#PHP" />
+                <element signature="e#8529#8908#0#PHP" />
+                <element signature="e#9625#9701#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/searchList.php">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/add_new_game.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-413">
+              <caret line="24" selection-start-line="24" selection-end-line="88" selection-end-column="6" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/won_percentage.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home_page_admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="693">
-              <caret line="67" column="110" selection-start-line="67" selection-start-column="110" selection-end-line="67" selection-end-column="110" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game_record.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1389">
-              <caret line="122" column="57" selection-start-line="122" selection-start-column="57" selection-end-line="122" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game_info_admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game_record_admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="79" column="110" selection-start-line="79" selection-start-column="110" selection-end-line="79" selection-end-column="110" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home_page.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="113" column="28" lean-forward="true" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
+            <state relative-caret-position="1462">
+              <caret line="86" column="6" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -179,6 +104,8 @@
     <findStrings>
       <find>edit</find>
       <find>All reco</find>
+      <find>tmp_name</find>
+      <find>update</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -201,11 +128,7 @@
         <option value="$PROJECT_DIR$/test2.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/test.php" />
-        <option value="$PROJECT_DIR$/functions.php" />
         <option value="$PROJECT_DIR$/edit_record.php" />
-        <option value="$PROJECT_DIR$/edit_game_info.php" />
-        <option value="$PROJECT_DIR$/game_info_admin.php" />
-        <option value="$PROJECT_DIR$/game_list.php" />
         <option value="$PROJECT_DIR$/game_record_admin.php" />
         <option value="$PROJECT_DIR$/home_page_admin.php" />
         <option value="$PROJECT_DIR$/leader_board_game.php" />
@@ -213,14 +136,21 @@
         <option value="$PROJECT_DIR$/list_matches.php" />
         <option value="$PROJECT_DIR$/matches_per_day.php" />
         <option value="$PROJECT_DIR$/won_percentage.php" />
+        <option value="$PROJECT_DIR$/test3.php" />
+        <option value="$PROJECT_DIR$/edit_game_info.php" />
+        <option value="$PROJECT_DIR$/game_list.php" />
+        <option value="$PROJECT_DIR$/uploadImage.php" />
+        <option value="$PROJECT_DIR$/functions.php" />
+        <option value="$PROJECT_DIR$/add_new_game.php" />
+        <option value="$PROJECT_DIR$/game_info_admin.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="828" />
+    <option name="x" value="798" />
     <option name="y" value="23" />
-    <option name="width" value="1042" />
+    <option name="width" value="1070" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -284,17 +214,18 @@
       <workItem from="1553001863179" duration="5455000" />
       <workItem from="1553008514697" duration="2168000" />
       <workItem from="1553029744486" duration="24694000" />
+      <workItem from="1553090838769" duration="10057000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54869000" />
+    <option name="totallyTimeSpent" value="64926000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="828" y="23" width="1042" height="1056" extended-state="0" />
+    <frame x="798" y="23" width="1070" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.252" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25680932" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -330,40 +261,12 @@
     <entry file="file://$PROJECT_DIR$/delete_record.php" />
     <entry file="file://$PROJECT_DIR$/add_record.php" />
     <entry file="file://$PROJECT_DIR$/test3.html" />
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="119" column="24" lean-forward="true" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="258" lean-forward="true" selection-start-line="258" selection-end-line="258" />
-          <folding>
-            <element signature="e#418#554#0#PHP" />
-            <element signature="e#582#2310#0#PHP" />
-            <element signature="e#2335#3191#0#PHP" />
-            <element signature="n#isAdmin#0;n#!!top" />
-            <element signature="n#displayError#0;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -376,38 +279,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edit_game_info.php">
+    <entry file="file://$PROJECT_DIR$/test2.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="69" column="110" selection-start-line="69" selection-start-column="110" selection-end-line="69" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/add_new_game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edit_record.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="69" selection-end-column="110" />
+        <state>
+          <caret selection-end-line="2" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game_info.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1136">
+        <state relative-caret-position="1558">
           <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matches_per_day.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leader_board_member.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="70" column="22" lean-forward="true" selection-start-line="63" selection-start-column="16" selection-end-line="70" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchList.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home_page_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/won_percentage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_record.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="883">
+          <caret line="122" column="57" selection-start-line="122" selection-start-column="57" selection-end-line="122" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/list_matches.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1193">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home_page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="905">
+          <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_record_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-869">
+          <caret line="81" column="22" selection-start-line="81" selection-start-column="22" selection-end-line="81" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leader_board_game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="101" column="51" selection-start-line="101" selection-start-column="38" selection-end-line="101" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edit_record.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="135" column="14" lean-forward="true" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="8" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game_list.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
+        <state relative-caret-position="12">
+          <caret line="119" column="27" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
           <folding>
             <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#!!top" expanded="true" />
@@ -416,76 +385,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="76" column="47" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edit_game_info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="138" column="57" selection-start-line="138" selection-start-column="57" selection-end-line="138" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="343" column="405" selection-start-line="343" selection-start-column="405" selection-end-line="343" selection-end-column="405" />
+          <folding>
+            <element signature="e#94#306#0#PHP" />
+            <element signature="e#252#306#0#PHP" />
+            <element signature="e#418#554#0#PHP" />
+            <element signature="e#582#2310#0#PHP" />
+            <element signature="e#2335#3191#0#PHP" />
+            <element signature="n#isAdmin#0;n#!!top" />
+            <element signature="n#displayError#0;n#!!top" />
+            <element signature="e#3758#6904#0#PHP" />
+            <element signature="e#6943#7915#0#PHP" />
+            <element signature="e#7951#8482#0#PHP" />
+            <element signature="e#8405#8482#0#PHP" />
+            <element signature="e#8529#8908#0#PHP" />
+            <element signature="e#9625#9701#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add_new_game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-413">
+          <caret line="24" selection-start-line="24" selection-end-line="88" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploadImage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="86" column="78" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game_info_admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game_record.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1389">
-          <caret line="122" column="57" selection-start-line="122" selection-start-column="57" selection-end-line="122" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game_record_admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="79" column="110" selection-start-line="79" selection-start-column="110" selection-end-line="79" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home_page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="113" column="28" lean-forward="true" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home_page_admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="67" column="110" selection-start-line="67" selection-start-column="110" selection-end-line="67" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leader_board_member.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leader_board_game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="78" column="17" lean-forward="true" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/list_matches.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matches_per_day.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="74" column="110" selection-start-line="74" selection-start-column="110" selection-end-line="74" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/searchList.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/won_percentage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
+        <state relative-caret-position="1462">
+          <caret line="86" column="6" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
         </state>
       </provider>
     </entry>

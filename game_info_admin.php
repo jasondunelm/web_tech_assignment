@@ -66,6 +66,7 @@ include("functions.php");
                     <a class="dropdown-item" href="leader_board_member.php">Leader Board - Member</a>
                     <a class="dropdown-item" href="won_percentage.php">Statics: Won-Played Percentage</a>
                     <a class="dropdown-item" href="matches_per_day.php">Statics: Number of Matches per Day</a>
+                    <a class="dropdown-item" href="game_list.php">Game Management</a>
                 </div>
             </li>
 

@@ -68,6 +68,7 @@ include("functions.php");
                     <a class="dropdown-item" href="leader_board_member.php">Leader Board - Member</a>
                     <a class="dropdown-item" href="won_percentage.php">Statics: Won-Played Percentage</a>
                     <a class="dropdown-item" href="matches_per_day.php">Statics: Number of Matches per Day</a>
+                    <a class="dropdown-item" href="game_list.php">Game Management</a>
                 </div>
             </li>
 
@@ -97,9 +98,8 @@ include("functions.php");
 
             <form method="post" class="mx-auto">
 
-                <table width="auto" border="1" cellpadding="4" cellspacing="1"
-                       class="table table-bordered table-dark"><h4 class="display-5">
-                        Update Match Details</h4>
+                <table class="table-responsive table-dark"><h4 class="display-5">
+                        Update Game Information</h4>
 
                     <tr>
                         <td>Game ID</td>
@@ -110,28 +110,25 @@ include("functions.php");
                         <td><?php echo $_GET['gn']; ?></td>
                     </tr>
                     <tr>
-                        <td>Game Rating</td>
-                        <td><input type="text" class="form-control text-center" name="newRating" value="<?php echo $_GET['gr']; ?>"/></td>
-                    </tr>
-                    <tr>
                         <td>Number of Players</td>
-                        <td><input type="text" class="form-control text-center" name="newNumOfPlayers" value="<?php echo $_GET['gnp']; ?>"/></td>
+                        <td><?php echo $_GET['gnp']; ?></td>
                     </tr>
                     <tr>
                         <td>Game Image</td>
                         <td><?php echo "<img style='width: 8rem;' src = 'images/" .$_GET['gimg']. "'>"; ?></td>
                     </tr>
                     <tr>
+                        <td>Game Rating</td>
+                        <td><input type="text" class="form-control text-center" name="newRating" value="<?php echo $_GET['gr']; ?>"/></td>
+                    </tr>
+                    <tr>
                         <td>Game Description</td>
-                        <td><textarea class="form-control text-left" cols="50" rows="15" name="newGameDes"><?php echo $_GET['gdes']; ?></textarea></td>
+                        <td><textarea class="form-control text-left" cols="70" rows="10" name="newGameDes"><?php echo $_GET['gdes']; ?></textarea></td>
                     </tr>
                 </table>
                 <input class="btn btn-warning my-2 my-sm-0\" type="submit" name="updateGameInfo" value="Update"/>
                 <input class="btn btn-warning my-2 my-sm-0\ ml-5" type="submit" name="cancelGameEdit" value="Cancel"/>
             </form>
-        </div>
-        <div class="row mt-3">
-            <input type="button" name="add" id="add" value="Add a new player to this match" class="btn btn-primary mr-2 mx-auto">
         </div>
     </div>
 </div>

@@ -67,6 +67,7 @@ include("functions.php");
                     <a class="dropdown-item" href="leader_board_member.php">Leader Board - Member</a>
                     <a class="dropdown-item" href="won_percentage.php">Statics: Won-Played Percentage</a>
                     <a class="dropdown-item" href="matches_per_day.php">Statics: Number of Matches per Day</a>
+                    <a class="dropdown-item" href="game_list.php">Game Management</a>
                 </div>
             </li>
 
@@ -96,31 +97,11 @@ include("functions.php");
 
             <form method="post" class="mx-auto">
 
-                <table class="table table-striped table-bordered table-dark">
+                <table class="table-sm table-striped table-bordered table-dark">
                     <h4 class="display-5">Number of Won for each player</h4>
-                    <div class="form-inline mb-3">
-                        <?php
-                        $query = "SELECT FirstName, LastName, userName FROM Users ORDER BY Users.FirstName ASC";
-                        $result = mysqli_query($link, $query);
-                        echo "<select class='mx-auto' name='player[]'><option value=''>Choose a player</option>";
-                        while ($row = mysqli_fetch_assoc($result)) { ?>
-                            <option value="<?php echo $row["userName"] ?>"><?php echo " ";
-                                echo $row["FirstName"];
-                                echo ".";
-                                echo $row["LastName"];
-                                echo " (";
-                                echo $row["userName"];
-                                echo ")";
-                                ?></option>
-                        <?php }
-                        echo "</select>";
-                        ?>
-                        <div class="input-group-append">
-                            <input type="submit" name="submit" value="Confirm" class="btn btn-primary mx-3">
-                        </div>
-                    </div>
                     <thead>
                     <tr>
+                        <td>User ID</td>
                         <td>User Name</td>
                         <td>Game Played</td>
                         <td>Game Won</td>
@@ -129,20 +110,15 @@ include("functions.php");
                     </thead>
                     <tbody>
                     <?php
-                    if ($_POST['submit'] == "Confirm") {
-                        $post_player = $_POST['player'];
+                    $query_num_of_user = "SELECT COUNT(id) as count FROM `Users`";
+                    $res_num_of_user = mysqli_query($link, $query_num_of_user);
+                    $row_num_of_user = mysqli_fetch_assoc($res_num_of_user);
+                    $num_of_user = $row_num_of_user['count'];
 
-                        foreach ($post_player as $selected) {
-                            $values = explode('|', $selected);
-                            $userName = $values[0];
-                            $query = "SELECT * FROM Users WHERE userName = '$userName'";
-                            $result = mysqli_query($link, $query);
-                            $row = mysqli_fetch_array($result);
-                            $row_id = $row["id"];
-                        }
+                    for ($id = 1; $id <= $num_of_user; $id++) {
 
-                        $query_played = "SELECT Users.userName, COUNT(Results.userID) AS NumOfPlays FROM Results JOIN Users ON Results.userID = Users.id WHERE userID ='$row_id'";
-                        $query_won = "SELECT Users.userName, COUNT(Results.userID) AS NumOfWon FROM Results JOIN Users ON Results.userID = Users.id WHERE userID ='$row_id' AND matchResult='win'";
+                        $query_played = "SELECT Users.id, Users.userName, COUNT(Results.userID) AS NumOfPlays FROM Results JOIN Users ON Results.userID = Users.id WHERE userID ='$id'";
+                        $query_won = "SELECT Users.userName, COUNT(Results.userID) AS NumOfWon FROM Results JOIN Users ON Results.userID = Users.id WHERE userID ='$id' AND matchResult='win'";
 
                         $res_played = mysqli_query($link, $query_played);
                         $res_won = mysqli_query($link, $query_won);
@@ -154,14 +130,15 @@ include("functions.php");
                         $num_won = $row_won['NumOfWon'];
 
                         $percentage_won = round(floatval($num_won / $num_plays) * 100) . '%';
-                    }
-                    ?>
-                    <tr>
-                        <td><?php echo $row_played['userName']?></td>
-                        <td><?php echo $row_played['NumOfPlays']?></td>
-                        <td><?php echo $row_won['NumOfWon']?></td>
-                        <td><?php echo $percentage_won?></td>
-                    </tr>
+                        ?>
+                        <tr>
+                            <td><?php echo $row_played['id'] ?></td>
+                            <td><?php echo $row_played['userName'] ?></td>
+                            <td><?php echo $row_played['NumOfPlays'] ?></td>
+                            <td><?php echo $row_won['NumOfWon'] ?></td>
+                            <td><?php echo $percentage_won ?></td>
+                        </tr>
+                    <?php }?>
                     </tbody>
                 </table>
             </form>

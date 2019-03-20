@@ -67,6 +67,7 @@ include("functions.php");
                     <a class="dropdown-item" href="leader_board_member.php">Leader Board - Member</a>
                     <a class="dropdown-item" href="won_percentage.php">Statics: Won-Played Percentage</a>
                     <a class="dropdown-item" href="matches_per_day.php">Statics: Number of Matches per Day</a>
+                    <a class="dropdown-item" href="game_list.php">Game Management</a>
                 </div>
             </li>
 
@@ -112,7 +113,7 @@ include("functions.php");
                         ?>
                         <div class="input-group-append mx-auto">
                             <input type="submit" name="submit" value="Filter Game" class="btn btn-primary mr-3">
-                            <input type="submit" name="submit" value="Add New Game" class="btn btn-primary mr-3">
+                            <input type="submit" name="addNewGame" value="Add New Game" class="btn btn-primary mr-3">
                             <input type="submit" name="submit" value="All Records" class="btn btn-primary">
                         </div>
                     </div>
@@ -162,9 +163,9 @@ include("functions.php");
                         </tr>";
                         }
                     } else if ($_POST['submit'] == "Filter Game") {
-                            $post_selectedGame = $_POST["selectedGame"];
+                            $post_selectedGame = $_POST['selectedGame'];
 
-                            if ($_POST["selectedGame"]) {
+                            if (!$_POST['selectedGame']) {
                                 $error = "Please select a game!";
                             } else {
                                 $query = "SELECT * FROM Games WHERE gameName='$post_selectedGame'";
@@ -183,11 +184,7 @@ include("functions.php");
                                           </tr>";
                                 }
                             }
-                        } else {
-                        if ($_POST["submit"] == "Add New Game"){
-                            header("Location:add_new_game.php");
                         }
-                    }
                      ?>
                     </tbody>
                 </table>
