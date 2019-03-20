@@ -127,7 +127,7 @@ FROM Games
 JOIN Matches ON Games.gameID = Matches.gameID
 JOIN Results ON Matches.matchID = Results.matchID
 JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
+ORDER BY Results.matchID";
                         $result = mysqli_query($link, $query);
 
                         while ($row = mysqli_fetch_assoc($result)){
@@ -150,7 +150,7 @@ JOIN Matches ON Games.gameID = Matches.gameID
 JOIN Results ON Matches.matchID = Results.matchID
 JOIN Users ON Results.userID = Users.id
 WHERE Results.matchID='".$q."'
-ORDER BY Results.resultID");
+ORDER BY Results.matchID");
                             if ($sql->num_rows>0){
                                 while($row = $sql->fetch_array()){
                                     echo "<tr>
@@ -173,7 +173,7 @@ FROM Games
 JOIN Matches ON Games.gameID = Matches.gameID
 JOIN Results ON Matches.matchID = Results.matchID
 JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
+ORDER BY Results.matchID";
                         $result = mysqli_query($link, $query);
 
                         while ($row = mysqli_fetch_assoc($result)){

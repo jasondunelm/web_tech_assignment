@@ -96,50 +96,60 @@ include("functions.php");
 
         <div class="row">
 
-            <form method="post" class="mx-auto">
+            <form method="post" class="mx-auto" enctype="multipart/form-data">
 
-                <table class="table table-bordered table-dark"><h4 class="display-5">
-                        Update Match Details</h4>
+                <table class="table-sm table-dark"><h4 class="display-5">
+                        Add Player into Game Record</h4>
 
                     <tr>
                         <td>Result ID</td>
-                        <td><?php echo $_GET['rid']; ?></td>
+                        <td><?php echo $_GET['nrid']; ?></td>
                     </tr>
                     <tr>
                         <td>Match ID</td>
-                        <td><?php echo $_GET['mc']; ?></td>
+                        <td><?php echo $_GET['nmc']; ?></td>
                     </tr>
                     <tr>
                         <td>Game Name</td>
-                        <td><?php echo $_GET['gc']; ?></td>
+                        <td><?php echo $_GET['ngc']; ?></td>
                     </tr>
                     <tr>
                         <td>Match Date</td>
-                        <td><?php echo $_GET['dc']; ?></td>
+                        <td><?php echo $_GET['ndc']; ?></td>
                     </tr>
                     <tr>
                         <td>Player</td>
-                        <td><?php echo $_GET['nc']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Game Result (win or lose)</td>
-                        <td><input class="form-control text-center" type="text" name="newResult" value="<?php echo $_GET['rc']; ?>"/>
+                        <td><?php
+                            $query = "SELECT FirstName, LastName, userName FROM Users ORDER BY Users.FirstName ASC";
+
+                            $result = mysqli_query($link, $query);
+                            echo "<select name='add_player_into_game[]'><option value=''>Select a Player</option>";
+                            while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <option value="<?php echo $row["userName"] ?>"><?php echo " ";
+                                    echo $row["FirstName"];
+                                    echo ".";
+                                    echo $row["LastName"];
+                                    echo " (";
+                                    echo $row["userName"];
+                                    echo ")";
+                                    ?></option>
+                            <?php }
+                            echo "</select>";
+                            ?>
                         </td>
                     </tr>
+                    <tr>
+                        <td>Game Result</td>
+                        <td><select name="add_result_into_game">
+                                <option value=" ">Win or Lose</option>
+                                <option value="win">Win</option>
+                                <option value="lose">Lose</option>
+                            </select>
+                    </tr>
                 </table>
-                <input class="btn btn-warning my-2 my-sm-0\" type="submit" name="updateRecord" value="Update"/>
-                <input class="btn btn-warning my-2 my-sm-0\ ml-5" type="submit" name="deleteRecord" value="Delete"
-                       onclick='return checkDelete()'/>
+                <input class="btn btn-warning my-2 my-sm-0\" type="submit" name="submit" value="Add Player to this record"/>
                 <input class="btn btn-warning my-2 my-sm-0\ ml-5" type="submit" name="cancelEdit" value="Cancel"/>
             </form>
-        </div>
-        <div class="row mt-3">
-            <?php
-            echo "<tr>
-                    <td>
-                    <a href=\"add_player_into_game.php?nrid=$_GET[rid]&nmc=$_GET[mc]&ngc=$_GET[gc]&ndc=$_GET[dc]&nnc=$_GET[nc]&nrc=$_GET[rc]\" class=\"btn btn-primary my-2 my-sm-0 mx-auto\">Add a new player to this match</a></td>
-                  </tr>";
-            ?>
         </div>
     </div>
 </div>
@@ -162,11 +172,6 @@ include("functions.php");
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script>
-    function checkDelete() {
-        return confirm('Are you sure you want to delete this record?');
-    }
-</script>
 
 </body>
 </html>

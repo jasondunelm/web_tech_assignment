@@ -93,16 +93,6 @@ if ($_POST['submit'] == "Log In") {
     }
 }
 
-// to judge if user is an admin user type
-function isAdmin()
-{
-    if (isset($_SESSION['id']) && $_SESSION['id']['userType'] == 'admin') {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 // display an Error message if any
 function displayError()
 {
@@ -122,7 +112,7 @@ function displayError()
     }
 }
 
-// upload a game record to database
+// add a game record to database
 if ($_POST['submit'] == "Upload Record") {
 
     $post_q0 = $_POST['q0'];
@@ -271,6 +261,36 @@ if (isset($_POST['deleteRecord'])) {
     } else {
         $error = "Delete is failed, please try again!";
     }
+}
+
+// add a player into a game record to database
+if ($_POST['submit']=="Add Player to this record") {
+    $matchID = $_GET['nmc'];
+    $matchDate = $_GET['ndc'];
+    $userID = $_POST['add_player_into_game'];
+    $matchResult = $_POST['add_result_into_game'];
+
+    //obtain the userID of chosen player
+    foreach ($userID as $selected) {
+            $values = explode('|', $selected);
+            $userName = $values[0];
+            $query = "SELECT * FROM Users WHERE userName = '$userName'";
+            $result = mysqli_query($link, $query);
+            $row = mysqli_fetch_array($result);
+            $add_player_ID = $row["id"];
+        }
+
+    $query = "INSERT INTO Results (matchID, matchDate, userID, matchResult) VALUES('$matchID', '$matchDate', '$add_player_ID', '$matchResult')";
+//    echo $query;
+    $data = mysqli_query($link, $query);
+    if ($data) {
+        $message = "This player been added into this game record! <a href=list_matches.php>Check updated list here</a>";
+    } else {
+        $error = "Action failed, please try again!";
+    }
+
+} else if (isset($_POST['cancelEdit'])) {
+    header("Location:list_matches.php");
 }
 
 // edit a game info to database
