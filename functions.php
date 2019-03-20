@@ -273,4 +273,23 @@ if (isset($_POST['deleteRecord'])) {
     }
 }
 
+// edit a game info to database
+if (isset($_POST['updateGameInfo'])) {
+    $gameID = $_GET['gameID'];
+    $newRating = $_POST['newRating'];
+    $newNumOfPlayers = $_POST['newNumOfPlayers'];
+    $newGameDes = $_POST['newGameDes'];
+
+    $query = "UPDATE Games SET gameRating = '$newRating', gameNumPlayer = '$newNumOfPlayers', gameDescription = '$newGameDes' WHERE Games.gameID = '$gameID'";
+    $data = mysqli_query($link, $query);
+    if ($data) {
+        $message = "Game info updated successfully! <a href=game_list.php>Check updated list here</a>";
+    } else {
+        $error = "Update is failed, please try again!";
+    }
+
+} else if (isset($_POST['cancelGameEdit'])) {
+    header("Location:game_list.php");
+}
+
 ?>

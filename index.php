@@ -120,7 +120,7 @@ include("functions.php");
                 </thead>
                 <tbody>
                 <?php
-                $query = "SELECT * FROM Games";
+                $query = "SELECT * FROM Games ORDER BY `Games`.`gameRating` ASC";
 
                 $result = mysqli_query($link, $query);
 

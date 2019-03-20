@@ -96,99 +96,99 @@ include("functions.php");
 
             <form method="post" class="mx-auto">
 
-                <table class="table-sm table-bordered table-dark"><h4 class="display-5">
-                        List of Matches</h4>
-                    <div class="input-group mb-3">
-                        <input type="text" name="q" class="form-control"
-                               placeholder="Search a specific match record by match ID" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
-                            <input type="submit" name="seeAll" value="All records" class="btn btn-primary">
+                <table class="table-sm table-bordered table-dark text-sm"><h4 class="display-5">
+                        List of Board Games</h4>
+                    <div class="form-inline mb-3">
+                        <?php
+
+                        $query = "SELECT gameName FROM Games ORDER BY Games.gameName ASC";
+
+                        $result = mysqli_query($link, $query);
+                        echo "<select name='selectedGame' class='mx-auto'><option value=''>Select a Board Game</option>";
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <option><?php echo $row["gameName"]; ?></option>
+                        <?php }
+                        echo "</select>";
+                        ?>
+                        <div class="input-group-append mx-auto">
+                            <input type="submit" name="submit" value="Filter Game" class="btn btn-primary mr-3">
+                            <input type="submit" name="submit" value="Add New Game" class="btn btn-primary mr-3">
+                            <input type="submit" name="submit" value="All Records" class="btn btn-primary">
                         </div>
                     </div>
                     <thead>
                     <tr>
-                        <td>Result ID</td>
-                        <td>Match ID</td>
+                        <td>Game ID</td>
                         <td>Game Name</td>
-                        <td>Match Date</td>
-                        <td>Player</td>
-                        <td>Game Result</td>
+                        <td>Game Rating</td>
+                        <td>Number Players for play</td>
+                        <td>Game Image</td>
+                        <td>Game Description</td>
                         <td>Operations</td>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
+                    if (!$_POST['submit'] == "Filter Game") {
+                        $query = "SELECT * FROM Games ORDER BY `Games`.`gameRating` ASC";
 
-                    if (!$_POST['submit']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
                         $result = mysqli_query($link, $query);
 
-                        while ($row = mysqli_fetch_assoc($result)){
+                        while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
+                            <td>" . $row["gameID"] . "</td>
+                            <td>" . $row["gameName"] . "</td>
+                            <td>" . $row["gameRating"] . "</td>
+                            <td>" . $row["gameNumPlayer"] . "</td>
+                            <td><img style='width: 8rem;' src = 'images/" . $row['images'] . "'></td>
+                            <td class='col-2 text-sm-left'>" . $row["gameDescription"] . "</td>
+                            <td><a href=\"edit_game_info.php?gid=$row[gameID]&gn=$row[gameName]&gr=$row[gameRating]&gnp=$row[gameNumPlayer]&gimg=$row[images]&gdes=$row[gameDescription]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
+                        </tr>";
                         }
-                    } else {
-                        if (isset($_POST['submit'])){
-                            $q = $link->real_escape_string($_POST['q']);
-                            $sql = $link->query("SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-WHERE Results.matchID='".$q."'
-ORDER BY Results.resultID");
-                            if ($sql->num_rows>0){
-                                while($row = $sql->fetch_array()){
+                    } else if ($_POST['submit'] == "All Records") {
+                        $query = "SELECT * FROM Games ORDER BY `Games`.`gameRating` ASC";
+
+                        $result = mysqli_query($link, $query);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>
+                            <td>" . $row["gameID"] . "</td>
+                            <td>" . $row["gameName"] . "</td>
+                            <td>" . $row["gameRating"] . "</td>
+                            <td>" . $row["gameNumPlayer"] . "</td>
+                            <td><img style='width: 8rem;' src = 'images/" . $row['images'] . "'></td>
+                            <td class='col-2 text-sm-left'>" . $row["gameDescription"] . "</td>
+                            <td><a href=\"edit_game_info.php?gid=$row[gameID]&gn=$row[gameName]&gr=$row[gameRating]&gnp=$row[gameNumPlayer]&gimg=$row[images]&gdes=$row[gameDescription]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
+                        </tr>";
+                        }
+                    } else if ($_POST['submit'] == "Filter Game") {
+                            $post_selectedGame = $_POST["selectedGame"];
+
+                            if ($_POST["selectedGame"]) {
+                                $error = "Please select a game!";
+                            } else {
+                                $query = "SELECT * FROM Games WHERE gameName='$post_selectedGame'";
+
+                                $result = mysqli_query($link, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)) {
                                     echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
+                                            <td>" . $row["gameID"] . "</td>
+                                            <td>" . $row["gameName"] . "</td>
+                                            <td>" . $row["gameRating"] . "</td>
+                                            <td>" . $row["gameNumPlayer"] . "</td>
+                                            <td><img style='width: 8rem;' src = 'images/" . $row['images'] . "'></td>
+                                            <td class='col-2 text-sm-left'>" . $row["gameDescription"] . "</td>
+                                            <td><a href=\"edit_game_info.php?gid=$row[gameID]&gn=$row[gameName]&gr=$row[gameRating]&gnp=$row[gameNumPlayer]&gimg=$row[images]&gdes=$row[gameDescription]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
+                                          </tr>";
                                 }
                             }
+                        } else {
+                        if ($_POST["submit"] == "Add New Game"){
+                            header("Location:add_new_game.php");
                         }
                     }
-
-                    if ($_POST['seeAll']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
-                        $result = mysqli_query($link, $query);
-
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                        }
-                    }
-
-                    ?>
+                     ?>
                     </tbody>
                 </table>
             </form>

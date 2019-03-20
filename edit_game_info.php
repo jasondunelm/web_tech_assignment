@@ -102,35 +102,32 @@ include("functions.php");
                         Update Match Details</h4>
 
                     <tr>
-                        <td>Result ID</td>
-                        <td><?php echo $_GET['rid']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Match ID</td>
-                        <td><?php echo $_GET['mc']; ?></td>
+                        <td>Game ID</td>
+                        <td><?php echo $_GET['gid']; ?></td>
                     </tr>
                     <tr>
                         <td>Game Name</td>
-                        <td><?php echo $_GET['gc']; ?></td>
+                        <td><?php echo $_GET['gn']; ?></td>
                     </tr>
                     <tr>
-                        <td>Match Date</td>
-                        <td><?php echo $_GET['dc']; ?></td>
+                        <td>Game Rating</td>
+                        <td><input type="text" class="form-control text-center" name="newRating" value="<?php echo $_GET['gr']; ?>"/></td>
                     </tr>
                     <tr>
-                        <td>Player</td>
-                        <td><?php echo $_GET['nc']; ?></td>
+                        <td>Number of Players</td>
+                        <td><input type="text" class="form-control text-center" name="newNumOfPlayers" value="<?php echo $_GET['gnp']; ?>"/></td>
                     </tr>
                     <tr>
-                        <td>Game Result (win or lose)</td>
-                        <td><input class="form-control text-center" type="text" name="newResult" value="<?php echo $_GET['rc']; ?>"/>
-                        </td>
+                        <td>Game Image</td>
+                        <td><?php echo "<img style='width: 8rem;' src = 'images/" .$_GET['gimg']. "'>"; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Game Description</td>
+                        <td><textarea class="form-control text-left" cols="50" rows="15" name="newGameDes"><?php echo $_GET['gdes']; ?></textarea></td>
                     </tr>
                 </table>
-                <input class="btn btn-warning my-2 my-sm-0\" type="submit" name="updateRecord" value="Update"/>
-                <input class="btn btn-warning my-2 my-sm-0\ ml-5" type="submit" name="deleteRecord" value="Delete"
-                       onclick='return checkDelete()'/>
-                <input class="btn btn-warning my-2 my-sm-0\ ml-5" type="submit" name="cancelEdit" value="Cancel"/>
+                <input class="btn btn-warning my-2 my-sm-0\" type="submit" name="updateGameInfo" value="Update"/>
+                <input class="btn btn-warning my-2 my-sm-0\ ml-5" type="submit" name="cancelGameEdit" value="Cancel"/>
             </form>
         </div>
         <div class="row mt-3">
@@ -157,11 +154,6 @@ include("functions.php");
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script>
-    function checkDelete() {
-        return confirm('Are you sure you want to delete this record?');
-    }
-</script>
 
 </body>
 </html>

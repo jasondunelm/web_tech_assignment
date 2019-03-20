@@ -96,98 +96,77 @@ include("functions.php");
 
             <form method="post" class="mx-auto">
 
-                <table class="table-sm table-bordered table-dark"><h4 class="display-5">
-                        List of Matches</h4>
-                    <div class="input-group mb-3">
-                        <input type="text" name="q" class="form-control"
-                               placeholder="Search a specific match record by match ID" aria-describedby="basic-addon2">
+                <table class="table table-striped table-bordered table-dark">
+                    <h4 class="display-5">Member Leader Board</h4>
+                    <div class="form-inline mb-3">
+                        <select name="selectedMonth" class="mx-auto">
+                            <option value=''>Please choose a month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
                         <div class="input-group-append">
-                            <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
-                            <input type="submit" name="seeAll" value="All records" class="btn btn-primary">
+                            <input type="submit" name="submit" value="Filter by Month" class="btn btn-primary mx-3">
+                            <input type="submit" name="submit" value="Annual Ranking" class="btn btn-primary">
                         </div>
                     </div>
                     <thead>
                     <tr>
-                        <td>Result ID</td>
-                        <td>Match ID</td>
-                        <td>Game Name</td>
-                        <td>Match Date</td>
-                        <td>Player</td>
-                        <td>Game Result</td>
-                        <td>Operations</td>
+                        <td>User Name</td>
+                        <td>Winning times</td>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-
-                    if (!$_POST['submit']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
+                    // display player leader board by filter in monthly
+                    if (!$_POST['submit'] == "Filter by Month") {
+                        $query = "SELECT Users.userName, Results.userID,COUNT(*) FROM Results JOIN Users ON Results.userID = Users.id WHERE matchResult = 'win' GROUP BY userID ORDER BY `COUNT(*)`  DESC";
                         $result = mysqli_query($link, $query);
 
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                        }
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td><?php echo $row["userName"]; ?></td>
+                                <td><?php echo $row["COUNT(*)"]; ?></td>
+                            </tr>
+                        <?php }
+                    } else if ($_POST['submit'] == "Annual Ranking") {
+                        $query = "SELECT Users.userName, Results.userID,COUNT(*) FROM Results JOIN Users ON Results.userID = Users.id WHERE matchResult = 'win' GROUP BY userID ORDER BY `COUNT(*)`  DESC";
+                        $result = mysqli_query($link, $query);
+
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td><?php echo $row["userName"]; ?></td>
+                                <td><?php echo $row["COUNT(*)"]; ?></td>
+                            </tr>
+                        <?php }
                     } else {
-                        if (isset($_POST['submit'])){
-                            $q = $link->real_escape_string($_POST['q']);
-                            $sql = $link->query("SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-WHERE Results.matchID='".$q."'
-ORDER BY Results.resultID");
-                            if ($sql->num_rows>0){
-                                while($row = $sql->fetch_array()){
-                                    echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                                }
+                        if ($_POST['submit'] == "Filter by Month") {
+                            $post_selectedMonth = $_POST["selectedMonth"];
+
+                            if (!$_POST['selectedMonth']) {
+                                $error = "Please select a month!";
+                            } else {
+                                $query = "SELECT Users.userName, Results.userID,COUNT(*) FROM Results JOIN Users ON Results.userID = Users.id WHERE matchResult = 'win' AND MONTH(Results.matchDate)='$post_selectedMonth' GROUP BY userID ORDER BY `COUNT(*)` DESC";
+                                $result = mysqli_query($link, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)) { ?>
+                                    <tr>
+                                        <td><?php echo $row["userName"]; ?></td>
+                                        <td><?php echo $row["COUNT(*)"]; ?></td>
+                                    </tr>
+                                <?php }
                             }
                         }
                     }
-
-                    if ($_POST['seeAll']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
-                        $result = mysqli_query($link, $query);
-
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                        }
-                    }
-
                     ?>
                     </tbody>
                 </table>

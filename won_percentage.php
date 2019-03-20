@@ -96,99 +96,72 @@ include("functions.php");
 
             <form method="post" class="mx-auto">
 
-                <table class="table-sm table-bordered table-dark"><h4 class="display-5">
-                        List of Matches</h4>
-                    <div class="input-group mb-3">
-                        <input type="text" name="q" class="form-control"
-                               placeholder="Search a specific match record by match ID" aria-describedby="basic-addon2">
+                <table class="table table-striped table-bordered table-dark">
+                    <h4 class="display-5">Number of Won for each player</h4>
+                    <div class="form-inline mb-3">
+                        <?php
+                        $query = "SELECT FirstName, LastName, userName FROM Users ORDER BY Users.FirstName ASC";
+                        $result = mysqli_query($link, $query);
+                        echo "<select class='mx-auto' name='player[]'><option value=''>Choose a player</option>";
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <option value="<?php echo $row["userName"] ?>"><?php echo " ";
+                                echo $row["FirstName"];
+                                echo ".";
+                                echo $row["LastName"];
+                                echo " (";
+                                echo $row["userName"];
+                                echo ")";
+                                ?></option>
+                        <?php }
+                        echo "</select>";
+                        ?>
                         <div class="input-group-append">
-                            <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
-                            <input type="submit" name="seeAll" value="All records" class="btn btn-primary">
+                            <input type="submit" name="submit" value="Confirm" class="btn btn-primary mx-3">
                         </div>
                     </div>
                     <thead>
                     <tr>
-                        <td>Result ID</td>
-                        <td>Match ID</td>
-                        <td>Game Name</td>
-                        <td>Match Date</td>
-                        <td>Player</td>
-                        <td>Game Result</td>
-                        <td>Operations</td>
+                        <td>User Name</td>
+                        <td>Game Played</td>
+                        <td>Game Won</td>
+                        <td>Won Percentage</td>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
+                    if ($_POST['submit'] == "Confirm") {
+                        $post_player = $_POST['player'];
 
-                    if (!$_POST['submit']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
-                        $result = mysqli_query($link, $query);
+                        foreach ($post_player as $selected) {
+                            $values = explode('|', $selected);
+                            $userName = $values[0];
+                            $query = "SELECT * FROM Users WHERE userName = '$userName'";
+                            $result = mysqli_query($link, $query);
+                            $row = mysqli_fetch_array($result);
+                            $row_id = $row["id"];
+                        }
 
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                        }
-                    } else {
-                        if (isset($_POST['submit'])){
-                            $q = $link->real_escape_string($_POST['q']);
-                            $sql = $link->query("SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-WHERE Results.matchID='".$q."'
-ORDER BY Results.resultID");
-                            if ($sql->num_rows>0){
-                                while($row = $sql->fetch_array()){
-                                    echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                                }
-                            }
-                        }
+                        $query_played = "SELECT Users.userName, COUNT(Results.userID) AS NumOfPlays FROM Results JOIN Users ON Results.userID = Users.id WHERE userID ='$row_id'";
+                        $query_won = "SELECT Users.userName, COUNT(Results.userID) AS NumOfWon FROM Results JOIN Users ON Results.userID = Users.id WHERE userID ='$row_id' AND matchResult='win'";
+
+                        $res_played = mysqli_query($link, $query_played);
+                        $res_won = mysqli_query($link, $query_won);
+
+                        $row_played = mysqli_fetch_assoc($res_played);
+                        $row_won = mysqli_fetch_assoc($res_won);
+
+                        $num_plays = $row_played['NumOfPlays'];
+                        $num_won = $row_won['NumOfWon'];
+
+                        $percentage_won = round(floatval($num_won / $num_plays) * 100) . '%';
                     }
-
-                    if ($_POST['seeAll']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
-                        $result = mysqli_query($link, $query);
-
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                        }
-                    }
-
                     ?>
+                    <tr>
+                        <td><?php echo $row_played['userName']?></td>
+                        <td><?php echo $row_played['NumOfPlays']?></td>
+                        <td><?php echo $row_won['NumOfWon']?></td>
+                        <td><?php echo $percentage_won?></td>
+                    </tr>
                     </tbody>
                 </table>
             </form>
@@ -216,3 +189,4 @@ ORDER BY Results.resultID";
         crossorigin="anonymous"></script>
 </body>
 </html>
+

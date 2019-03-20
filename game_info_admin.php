@@ -61,10 +61,11 @@ include("functions.php");
                     Admin Functions
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">List of Matches</a>
-                    <a class="dropdown-item" href="#">Leader Boards</a>
-                    <a class="dropdown-item" href="#">Statistics</a>
-                    <a class="dropdown-item" href="#">Game Store</a>
+                    <a class="dropdown-item" href="list_matches.php">List of Matches</a>
+                    <a class="dropdown-item" href="leader_board_game.php">Leader Board - Game</a>
+                    <a class="dropdown-item" href="leader_board_member.php">Leader Board - Member</a>
+                    <a class="dropdown-item" href="won_percentage.php">Statics: Won-Played Percentage</a>
+                    <a class="dropdown-item" href="matches_per_day.php">Statics: Number of Matches per Day</a>
                 </div>
             </li>
 

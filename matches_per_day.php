@@ -19,6 +19,12 @@ include("functions.php");
 
     <!--More CSS features by author-->
     <link rel="stylesheet" href="style_WestGames.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphel-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-xl navbar-light" style="background-color: #FAFFF2;">
@@ -96,98 +102,48 @@ include("functions.php");
 
             <form method="post" class="mx-auto">
 
-                <table class="table-sm table-bordered table-dark"><h4 class="display-5">
-                        List of Matches</h4>
-                    <div class="input-group mb-3">
-                        <input type="text" name="q" class="form-control"
-                               placeholder="Search a specific match record by match ID" aria-describedby="basic-addon2">
+                <table class="table table-striped table-bordered table-dark">
+                    <h4 class="display-5">Matches per Day on Monthly View</h4>
+                    <div class="form-inline mb-3">
+                        <select name="selectedMonth" class="mx-auto">
+                            <option value=''>Please choose a month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
                         <div class="input-group-append">
-                            <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
-                            <input type="submit" name="seeAll" value="All records" class="btn btn-primary">
+                            <input type="submit" name="submit" value="Request" class="btn btn-primary mx-3">
                         </div>
                     </div>
                     <thead>
-                    <tr>
-                        <td>Result ID</td>
-                        <td>Match ID</td>
-                        <td>Game Name</td>
-                        <td>Match Date</td>
-                        <td>Player</td>
-                        <td>Game Result</td>
-                        <td>Operations</td>
-                    </tr>
+
+
                     </thead>
                     <tbody>
                     <?php
-
-                    if (!$_POST['submit']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
-                        $result = mysqli_query($link, $query);
-
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                        }
-                    } else {
-                        if (isset($_POST['submit'])){
-                            $q = $link->real_escape_string($_POST['q']);
-                            $sql = $link->query("SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-WHERE Results.matchID='".$q."'
-ORDER BY Results.resultID");
-                            if ($sql->num_rows>0){
-                                while($row = $sql->fetch_array()){
-                                    echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                                }
+                    if ($_POST['submit'] == "Request") {
+                        $post_selectedMonth = $_POST["selectedMonth"];
+                        if (!$_POST['selectedMonth']) {
+                            $error = "Please select a month!";
+                        } else {
+                            $query = "SELECT Results.matchID, Results.matchDate FROM Results WHERE matchResult ='win' AND MONTH(Results.matchDate)='$post_selectedMonth'";
+                            $result = mysqli_query($link, $query);
+                            $chart_data = '';
+                            while ($row = mysqli_fetch_array($result)){
+                                $chart_data .="{day:'".$row["matchDate"]."},";
                             }
+                            $chart_data = substr($chart_data,0,-2);
                         }
                     }
-
-                    if ($_POST['seeAll']) {
-                        $query = "SELECT Results.resultID, Matches.matchID, Games.gameName, Results.matchDate, Users.firstName, Users.lastName, Results.matchResult
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-JOIN Users ON Results.userID = Users.id
-ORDER BY Results.resultID";
-                        $result = mysqli_query($link, $query);
-
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                    <td>".$row["resultID"]."</td>
-                                    <td>".$row["matchID"]."</td>
-                                    <td>".$row["gameName"]."</td>
-                                    <td>".$row["matchDate"]."</td>
-                                    <td>".$row["firstName"].$row["lastName"]."</td>
-                                    <td>".$row["matchResult"]."</td>
-                                    <td><a href=\"edit_record.php?rid=$row[resultID]&mc=$row[matchID]&gc=$row[gameName]&dc=$row[matchDate]&nc=$row[firstName].$row[lastName]&rc=$row[matchResult]\" class=\"btn btn-warning my-2 my-sm-0\">Edit</a></td>
-                                    </tr>";
-                        }
-                    }
-
                     ?>
                     </tbody>
                 </table>
@@ -214,5 +170,16 @@ ORDER BY Results.resultID";
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script>
+    Morris.Bar({
+        element: 'chart',
+        data: [<?php echo $chart_data;?>],
+        xkey: 'matchDate',
+        ykey: ['matchID'],
+        label: ['matchID'],
+        hideHover: 'auto',
+    });
+</script>
 </body>
 </html>
+

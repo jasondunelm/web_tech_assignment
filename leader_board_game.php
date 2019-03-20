@@ -63,9 +63,10 @@ include("functions.php");
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="list_matches.php">List of Matches</a>
-                    <a class="dropdown-item" href="#">Leader Boards</a>
-                    <a class="dropdown-item" href="#">Statistics</a>
-                    <a class="dropdown-item" href="#">Game Store</a>
+                    <a class="dropdown-item" href="leader_board_game.php">Leader Board - Game</a>
+                    <a class="dropdown-item" href="leader_board_member.php">Leader Board - Member</a>
+                    <a class="dropdown-item" href="won_percentage.php">Statics: Won-Played Percentage</a>
+                    <a class="dropdown-item" href="matches_per_day.php">Statics: Number of Matches per Day</a>
                 </div>
             </li>
 
@@ -92,31 +93,41 @@ include("functions.php");
         <?php displayError(); ?>
 
         <div class="row">
+            <form method="post" class="mx-auto">
 
-            <div class="col">
-                <form method="post" class="mx-auto">
-
-                    <table width="auto" border="1" cellpadding="4" cellspacing="1"
-                           class="table table-bordered table-dark"><h4 class="display-5">
-                            Game Leader Board</h4>
-                        <div class="input-group mb-3">
-                            <input type="text" name="q" class="form-control"
-                                   placeholder="Search a specific match record by match ID"
-                                   aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
-                                <input type="submit" name="seeAll" value="All records" class="btn btn-primary">
-                            </div>
+                <table class="table table-striped table-bordered table-dark">
+                        <h4 class="display-5">Game Leader Board</h4>
+                    <div class="form-inline mb-3">
+                        <select name="selectedMonth" class="mx-auto">
+                            <option value=''>Please choose a month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <div class="input-group-append">
+                            <input type="submit" name="submit" value="Filter by Game" class="btn btn-primary mx-3">
+                            <input type="submit" name="submit" value="All records" class="btn btn-primary">
                         </div>
-                        <thead>
-                        <tr>
-                            <td>Game Name</td>
-                            <td>Play times</td>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    </div>
+                    <thead>
+                    <tr>
+                        <td>Game Name</td>
+                        <td>Play times</td>
+                    </tr>
+                    </thead>
+                    <tbody>
                         <?php
-                        if (!$_POST['submit']) {
+                        // display player leader board by filter in monthly
+                        if (!$_POST['submit'] == "Filter by Game") {
                             $query = "SELECT Games.gameName, Matches.gameID,COUNT(*) FROM Matches JOIN Games ON Matches.gameID = Games.gameID GROUP BY Matches.gameID ORDER BY `COUNT(*)` DESC";
                             $result = mysqli_query($link, $query);
 
@@ -126,68 +137,40 @@ include("functions.php");
                                     <td><?php echo $row["COUNT(*)"]; ?></td>
                                 </tr>
                             <?php }
-                        }
-                        ?>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-
-            <div class="col">
-
-                <form method="post" class="mx-auto">
-
-                    <table width="auto" border="1" cellpadding="4" cellspacing="1"
-                           class="table table-bordered table-dark"><h4 class="display-5">
-                            Member Leader Board</h4>
-                        <div class="form-inline mb-3">
-                            <select name="month" class="mx-auto">
-                                <option>Please choose a month</option>
-                                <option>January</option>
-                                <option>February</option>
-                                <option>March</option>
-                                <option>April</option>
-                                <option>May</option>
-                                <option>June</option>
-                                <option>July</option>
-                                <option>August</option>
-                                <option>September</option>
-                                <option>October</option>
-                                <option>November</option>
-                                <option>December</option>
-                            </select>
-
-                            <div class="input-group-append">
-                                <input type="submit" name="submit" value="Filter" class="btn btn-primary mr-3">
-                                <input type="submit" name="seeAll" value="Annual Ranking" class="btn btn-primary">
-                            </div>
-                        </div>
-                        <thead>
-                        <tr>
-                            <td>User Name</td>
-                            <td>Winning times</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        if (!$_POST['submit']) {
-                            $query = "SELECT Users.userName, Results.userID,COUNT(*) FROM Results JOIN Users ON Results.userID = Users.id WHERE matchResult = 'win' GROUP BY userID ORDER BY `COUNT(*)`  DESC";
+                        } else if ($_POST['submit'] == "All records") {
+                            $query = "SELECT Games.gameName, Matches.gameID,COUNT(*) FROM Matches JOIN Games ON Matches.gameID = Games.gameID GROUP BY Matches.gameID ORDER BY `COUNT(*)` DESC";
                             $result = mysqli_query($link, $query);
 
                             while ($row = mysqli_fetch_assoc($result)) { ?>
                                 <tr>
-                                    <td><?php echo $row["userName"]; ?></td>
+                                    <td><?php echo $row["gameName"]; ?></td>
                                     <td><?php echo $row["COUNT(*)"]; ?></td>
                                 </tr>
                             <?php }
+                        } else {
+                            if ($_POST['submit'] == "Filter by Game") {
+                                $post_selectedMonth = $_POST["selectedMonth"];
+
+                                if (!$_POST['selectedMonth']) {
+                                    $error = "Please select a month!";
+                                } else {
+                                    $query = "SELECT Games.gameName, Matches.gameID,COUNT(*) FROM Matches JOIN Games ON Matches.gameID = Games.gameID JOIN Results ON Matches.matchID = Results.matchID WHERE Results.matchResult = 'win' AND MONTH(Results.matchDate)='$post_selectedMonth' GROUP BY Matches.gameID ORDER BY `COUNT(*)` DESC";
+                                    $result = mysqli_query($link, $query);
+
+                                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                                        <tr>
+                                            <td><?php echo $row["gameName"]; ?></td>
+                                            <td><?php echo $row["COUNT(*)"]; ?></td>
+                                        </tr>
+                                    <?php }
+                                }
+                            }
                         }
                         ?>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
+                    </tbody>
+                </table>
+            </form>
         </div>
-
     </div>
 </div>
 

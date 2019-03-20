@@ -62,9 +62,10 @@ include("functions.php");
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="list_matches.php">List of Matches</a>
-                    <a class="dropdown-item" href="leader_boards.php">Leader Boards</a>
-                    <a class="dropdown-item" href="#">Statistics</a>
-                    <a class="dropdown-item" href="#">Game Store</a>
+                    <a class="dropdown-item" href="leader_board_game.php">Leader Board - Game</a>
+                    <a class="dropdown-item" href="leader_board_member.php">Leader Board - Member</a>
+                    <a class="dropdown-item" href="won_percentage.php">Statics: Won-Played Percentage</a>
+                    <a class="dropdown-item" href="matches_per_day.php">Statics: Number of Matches per Day</a>
                 </div>
             </li>
 
@@ -93,9 +94,8 @@ include("functions.php");
 
             <form method="post" class="form-group mx-auto">
 
-                <table width="auto" border="1" cellpadding="4" cellspacing="1"
-                       class="table table-bordered table-dark"><h4 class="display-5">Account
-                        Information</h4>
+                <table class="table-sm table-bordered table-dark">
+                <h4 class="display-5">Account Information</h4>
                     <thead>
                     <?php
                     $query = "SELECT Users.id, Users.userName, Users.firstName, Users.lastName, Users.userType FROM Users WHERE id=" . $_SESSION['id'];
@@ -139,9 +139,8 @@ include("functions.php");
 
             <form method="post" class="mx-auto">
 
-                <table width="auto" border="1" cellpadding="4" cellspacing="1"
-                       class="table table-bordered table-dark"><h4 class="display-5">
-                        Your recent play records</h4>
+                <table class="table table-striped table-bordered table-dark">
+                    <h4 class="display-5">Your recent play records</h4>
                     <div class="input-group mb-3">
                         <input type="text" name="q" class="form-control"
                                placeholder="Search win records by game name" aria-describedby="basic-addon2">
@@ -160,8 +159,20 @@ include("functions.php");
                     </thead>
                     <tbody>
                     <?php
+                    if (!$_POST['submit'] == "Filter") {
+                        $query = "SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID FROM Games JOIN Matches ON Games.gameID = Matches.gameID JOIN Results ON Matches.matchID = Results.matchID WHERE userID='" . $_SESSION['id'] . "'ORDER BY Results.matchID";
 
-                    if (!$_POST['submit']) {
+                        $result = mysqli_query($link, $query);
+
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td><?php echo $row["matchID"]; ?></td>
+                                <td><?php echo $row["gameName"]; ?></td>
+                                <td><?php echo $row["matchDate"]; ?></td>
+                                <td><?php echo $row["matchResult"]; ?></td>
+                            </tr>
+                        <?php }
+                    } else if ($_POST['submit']=="All records") {
                         $query = "SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID FROM Games JOIN Matches ON Games.gameID = Matches.gameID JOIN Results ON Matches.matchID = Results.matchID WHERE userID='" . $_SESSION['id'] . "'ORDER BY Results.matchID";
 
                         $result = mysqli_query($link, $query);
@@ -178,11 +189,7 @@ include("functions.php");
                         if ($_POST['submit'] =="Filter") {
                             $q = $link->real_escape_string($_POST['q']);
 
-                            $sql = $link->query("SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID
-FROM Games
-JOIN Matches ON Games.gameID = Matches.gameID
-JOIN Results ON Matches.matchID = Results.matchID
-WHERE userID='" . $_SESSION['id'] . "'AND gameName LIKE '%$q%'");
+                            $sql = $link->query("SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID FROM Games JOIN Matches ON Games.gameID = Matches.gameID JOIN Results ON Matches.matchID = Results.matchID WHERE userID='" . $_SESSION['id'] . "'AND gameName LIKE '%$q%'");
 
                             if ($sql->num_rows > 0) {
                                 while ($row = $sql->fetch_array()) { ?>
@@ -196,21 +203,6 @@ WHERE userID='" . $_SESSION['id'] . "'AND gameName LIKE '%$q%'");
                                 <?php }
                             }
                         }
-                    }
-
-                    if ($_POST['submit']=="All records") {
-                        $query = "SELECT Games.gameID, Games.gameName, Matches.matchID, Results.matchResult, Results.matchDate, Results.userID FROM Games JOIN Matches ON Games.gameID = Matches.gameID JOIN Results ON Matches.matchID = Results.matchID WHERE userID='" . $_SESSION['id'] . "'ORDER BY Results.matchID";
-
-                        $result = mysqli_query($link, $query);
-
-                        while ($row = mysqli_fetch_assoc($result)) { ?>
-                            <tr>
-                                <td><?php echo $row["matchID"]; ?></td>
-                                <td><?php echo $row["gameName"]; ?></td>
-                                <td><?php echo $row["matchDate"]; ?></td>
-                                <td><?php echo $row["matchResult"]; ?></td>
-                            </tr>
-                        <?php }
                     }
                     ?>
                     </tbody>
