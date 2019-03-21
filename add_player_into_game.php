@@ -145,6 +145,7 @@ include("functions.php");
                                 <option value="win">Win</option>
                                 <option value="lose">Lose</option>
                             </select>
+                        </td>
                     </tr>
                 </table>
                 <input class="btn btn-warning my-2 my-sm-0\" type="submit" name="submit" value="Add Player to this record"/>

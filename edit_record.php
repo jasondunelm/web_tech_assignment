@@ -122,8 +122,12 @@ include("functions.php");
                         <td><?php echo $_GET['nc']; ?></td>
                     </tr>
                     <tr>
-                        <td>Game Result (win or lose)</td>
-                        <td><input class="form-control text-center" type="text" name="newResult" value="<?php echo $_GET['rc']; ?>"/>
+                        <td>Game Result</td>
+                        <td><select name="newResult">
+                                <option value=" ">Win or Lose</option>
+                                <option value="win">Win</option>
+                                <option value="lose">Lose</option>
+                            </select>
                         </td>
                     </tr>
                 </table>
