@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc809f72-9277-4f41-b8fd-91de3dfa1566" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/add_player_into_game.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edit_record.php" beforeDir="false" afterPath="$PROJECT_DIR$/edit_record.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list_matches.php" beforeDir="false" afterPath="$PROJECT_DIR$/list_matches.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test3.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +11,32 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="549">
+              <caret line="204" column="4" selection-start-line="204" selection-start-column="4" selection-end-line="204" selection-end-column="4" />
+              <folding>
+                <element signature="e#418#554#0#PHP" />
+                <element signature="e#582#2310#0#PHP" />
+                <element signature="e#2335#3191#0#PHP" />
+                <element signature="n#displayError#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-579">
+              <caret line="76" column="47" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -69,16 +87,16 @@
         <option value="$PROJECT_DIR$/edit_record.php" />
         <option value="$PROJECT_DIR$/test3.php" />
         <option value="$PROJECT_DIR$/add_player_into_game.php" />
-        <option value="$PROJECT_DIR$/functions.php" />
         <option value="$PROJECT_DIR$/list_matches.php" />
+        <option value="$PROJECT_DIR$/functions.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="798" />
+    <option name="x" value="2" />
     <option name="y" value="23" />
-    <option name="width" value="1070" />
+    <option name="width" value="1439" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -89,6 +107,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -100,7 +119,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -144,16 +162,18 @@
       <workItem from="1553029744486" duration="24694000" />
       <workItem from="1553090838769" duration="10057000" />
       <workItem from="1553116581214" duration="6234000" />
+      <workItem from="1553125353554" duration="543000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71160000" />
+    <option name="totallyTimeSpent" value="71703000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="798" y="23" width="1070" height="1056" extended-state="0" />
+    <frame x="2" y="23" width="1439" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25680932" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19255547" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -197,27 +217,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test3.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test3.php" />
+    <entry file="file://$PROJECT_DIR$/test2.php" />
+    <entry file="file://$PROJECT_DIR$/test.php" />
     <entry file="file://$PROJECT_DIR$/add_new_game.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -243,21 +245,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="823">
           <caret line="138" column="24" lean-forward="true" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="266" column="52" selection-start-line="266" selection-start-column="52" selection-end-line="266" selection-end-column="52" />
-          <folding>
-            <element signature="e#94#306#0#PHP" />
-            <element signature="e#252#306#0#PHP" />
-            <element signature="e#418#554#0#PHP" />
-            <element signature="e#582#2310#0#PHP" />
-            <element signature="e#2335#3191#0#PHP" />
-            <element signature="n#displayError#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -351,17 +338,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="905">
-          <caret line="76" column="47" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/home_page_admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="715">
           <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-579">
+          <caret line="76" column="47" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="204" column="4" selection-start-line="204" selection-start-column="4" selection-end-line="204" selection-end-column="4" />
+          <folding>
+            <element signature="e#418#554#0#PHP" />
+            <element signature="e#582#2310#0#PHP" />
+            <element signature="e#2335#3191#0#PHP" />
+            <element signature="n#displayError#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>

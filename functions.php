@@ -193,16 +193,15 @@ if ($_POST['submit'] == "Upload Record") {
         }
 
         $message = "This game record been uploaded successfully!";
-        $userType = $_SESSION['userType'];
-
-        if ($userType == 'admin') {
-            $_SESSION['gameID'] = $row['gameID'];
-            header('Location:game_record_admin.php');
-        } else {
-            $_SESSION['gameID'] = $row['gameID'];
-            header('Location:game_record.php');
-        }
-
+//        $userType = $_SESSION['userType'];
+//
+//        if ($userType == 'admin') {
+//            $_SESSION['gameID'] = $row['gameID'];
+//            header('Location:game_record_admin.php');
+//        } else {
+//            $_SESSION['gameID'] = $row['gameID'];
+//            header('Location:game_record.php');
+//        }
     }
 
 }
